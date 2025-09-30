@@ -1,6 +1,3 @@
-\c
-database_name
-
 -- Enable PostGIS extension
 CREATE
 EXTENSION IF NOT EXISTS postgis;
@@ -58,7 +55,6 @@ CREATE TABLE opening_hours
     close_time      TIME     NOT NULL
 );
 
--- Індекс для швидкого пошуку годин за туалетом
 CREATE INDEX idx_opening_hours_wc ON opening_hours (water_closet_id);
 
 
