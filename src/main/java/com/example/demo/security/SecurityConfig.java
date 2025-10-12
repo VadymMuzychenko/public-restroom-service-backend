@@ -29,12 +29,12 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http, Environment env) throws Exception {
         if (env.acceptsProfiles(Profiles.of("dev"))) {
             http.authorizeHttpRequests(authorize -> authorize
-                    .requestMatchers("/api/auth/**", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                    .requestMatchers("/api/auth/**", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/actuator/health").permitAll()
                     .anyRequest().authenticated()
             );
         } else {
             http.authorizeHttpRequests(authorize -> authorize
-                    .requestMatchers("/api/auth/**").permitAll()
+                    .requestMatchers("/api/auth/**", "/actuator/health").permitAll()
                     .anyRequest().authenticated()
             );
         }
